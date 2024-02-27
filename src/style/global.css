@@ -15,10 +15,19 @@ body {
     transform: translate(0%, -50%); 
     user-select: none;
 }
-  
+
 #image-track > .image {
     width: 40vmin;
     height: 56vmin;
     object-fit: cover;
     object-position: center;
+}
+
+.image {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+  
+.image:hover {
+    transform: scale(1.1);
+    filter: brightness(70%);
 }

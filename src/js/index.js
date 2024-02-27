@@ -18,7 +18,7 @@ window.handleOnMove = (e) => {
   const percentage = (mouseDelta / maxDelta) * -100,
     nextPercentageUnconstrained =
       parseFloat(track.dataset.prevPercentage) + percentage;
-  nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+  let nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
 
   track.dataset.percentage = nextPercentage;
 
@@ -50,3 +50,20 @@ window.ontouchend = (e) => handleOnUp(e.touches[0]);
 window.onmousemove = (e) => handleOnMove(e);
 
 window.ontouchmove = (e) => handleOnMove(e.touches[0]);
+
+function handleOnMouseLeave(event) {
+
+  event.target.style.transform = 'scale(1)';
+  event.target.style.filter = 'brightness(100%)';
+}
+
+function handleOnMouseEnter(event) {
+  event.target.style.transform = 'scale(1.1)';
+  event.target.style.filter = 'brightness(70%)';
+}
+
+const images = track.getElementsByClassName("image");
+for (const image of images) {
+  image.addEventListener('mouseenter', handleOnMouseEnter);
+  image.addEventListener('mouseleave', handleOnMouseLeave);
+}
